@@ -18,8 +18,8 @@ Note that you will need to know which user and password are erquired to access t
 
 To automate getting the latest HD movie releases from the various indexer sites, you need to add the following cron job to your Apache/NGINX server or Docker. The latest HD movies will update every 30 minutes. The latest NY TImes Bestseller Books will be twice a week. Check the paths below so they correspond to the correct location.
 ```
-0,30 * * * * php /config/www/portal/parseallfeeds.php
-0 0 * * 1,4 php /config/www/portal/parseallnytimes2.php
+0,30 * * * * php /config/www/MACH/parseallfeeds.php
+0 0 * * 1,4 php /config/www/MACH/parseallnytimes2.php
 ```
 
 
@@ -32,8 +32,4 @@ To automate getting the latest HD movie releases from the various indexer sites,
 * Create NZBGet module to use instead of SabNZBd.
 * Create a Plex module...Emby?
 * An easier way to configure user settings that do not involve config.php
-* Better setup for the following features (currently require hard coding):
-** IP Camera Setup
-- Calibre Integration
-- User's shortcuts.php and bookmarks.php
-- Weather and Time
+* Better setup for the following features (currently require hard coding): IP Camera Setup; Calibre Integration; User's shortcuts.php and bookmarks.php; Weather and Time

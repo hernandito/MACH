@@ -23,7 +23,7 @@ To automate getting the latest HD movie releases from the various indexer sites,
 ```
 
 
-**My wish list **
+##My wish list 
 (but lack skills to implement):
 * A system for creating additional modular features.
 * Create additional RSS scrapers for other NZBIndexers. 
@@ -33,6 +33,6 @@ To automate getting the latest HD movie releases from the various indexer sites,
 * An easier way to configure user settings that do not involve config.php
 * Better setup for the following features (currently require hard coding):
 ** IP Camera Setup
-** Calibre Integration
-** User's shortcuts.php and bookmarks.php
-** Weather and Time
+- Calibre Integration
+- User's shortcuts.php and bookmarks.php
+- Weather and Time

@@ -1,0 +1,226 @@
+
+<?php
+require 'config.php';
+
+/////////////////////////////////////////////////////////////////////////////////	
+//  This will parse all feeds in MySQL for quicker browser retrieval
+/////////////////////////////////////////////////////////////////////////////////	
+
+
+function parseNYTimes($theapiurl, $thesqltable, $themessage) {
+
+		// Create connection
+		$con=mysqli_connect($MysqlRSSServer, $MysqlRSSUser, $MysqlRSSPassword, "nytimes");
+		// Check connection
+		if (mysqli_connect_errno($con))
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}    
+
+		$myurl = $theapiurl;
+
+		$response = file_get_contents($myurl);
+		$result = json_decode($response, true);
+		$result=$result['results']['books'];
+
+		$totality = count($result);
+
+		if ($totality != "") {	
+				
+			/////////////////////////////////////////////////////////////////////////////////	
+			//		Set the Time Stamp
+			/////////////////////////////////////////////////////////////////////////////////	
+			$timestamp = "";
+			$timestamp = date('Y/m/d H:i:s');
+
+
+			/////////////////////////////////////////////////////////////////////////////////	
+			//  Delete all entries in table
+			/////////////////////////////////////////////////////////////////////////////////			
+			$sql = "DELETE FROM {$thesqltable}";
+			mysqli_query($con, $sql) or die(mysqli_error());
+			
+			$sql = "ALTER TABLE {$thesqltable} AUTO_INCREMENT = 1;";
+			mysqli_query($con, $sql) or die(mysqli_error());	
+			
+		//	$itemNr=0;
+
+			$link = mysqli_connect($MysqlRSSServer, $MysqlRSSUser, $MysqlRSSPassword, "nytimes");
+			
+			if($link === false){
+
+				die("ERROR: Could not connect. " . mysqli_connect_error());
+
+			}	
+		
+			for ($i = 0; $i <$totality; $i++) {
+			
+				$myrank = $result[$i]['rank'];
+				
+				$title = $result[$i]['title'];	
+				$title = ucwords(strtolower($title));
+				$title =  str_replace('"',"'",$title) ;	
+				$title =  str_replace('&',"and",$title) ;
+				$title = htmlentities($title, ENT_QUOTES, 'UTF-8');			
+
+				
+				$author = $result[$i]['author'];	
+				$author = ucwords(strtolower($author));
+				$author =  str_replace('"',"'",$author) ;	
+				$author =  str_replace('&',"and",$author) ;
+				$author = htmlentities($author, ENT_QUOTES, 'UTF-8');			
+				
+				$isbn10 = $result[$i]['primary_isbn10'];	
+				$isbn10 = ucwords(strtolower($isbn10));
+				$isbn10 =  str_replace('"',"'",$isbn10) ;	
+				$isbn10 =  str_replace('&',"and",$isbn10) ;
+				$isbn10 = htmlentities($isbn10, ENT_QUOTES, 'UTF-8');	
+				
+				$isbn13 = $result[$i]['primary_isbn13'];	
+				$isbn13 = ucwords(strtolower($isbn13));
+				$isbn13 =  str_replace('"',"'",$isbn13) ;	
+				$isbn10 =  str_replace('&',"and",$isbn13) ;
+				$isbn13 = htmlentities($isbn10, ENT_QUOTES, 'UTF-8');				
+				
+				$image = $result[$i]['book_image'];									
+				$amazonurl = $result[$i]['amazon_product_url'];									
+				$weeks = $result[$i]['weeks_on_list'];	
+				
+				$descript = $result[$i]['description'];									
+				$descript =  str_replace('"',"'",$descript) ;	
+				$descript =  str_replace('&',"and",$descript) ;
+				$descript = htmlentities($descript, ENT_QUOTES, 'UTF-8');										
+
+				//insert new news to DB 	
+				
+	
+
+				$query = "INSERT INTO {$thesqltable} (rank, title, author, isbn10, isbn13, image, amazonurl, weeks, descript, timestamp) VALUES ('$myrank', '$title', '$author', '$isbn10', '$isbn13', '$image', '$amazonurl', '$weeks', '$descript', '$timestamp')";
+
+				if(mysqli_query($link, $query)){
+
+					//	echo "Records added successfully.";
+
+				} else{
+
+						echo "ERROR: Unable to execute query. " . mysqli_error($link) . "\n\n";
+
+				}	
+			}
+		mysqli_close($link);	
+			
+		} else { echo "Not Available\n"; }
+		
+	echo $themessage;	
+		
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Combined Print & e-Book Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/combined-print-and-e-book-fiction.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookscombinedfiction";
+$mymessage = "Completed Combined Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Combined Print & e-Book Non-Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/combined-print-and-e-book-nonfiction.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookscombinednonfiction";
+$mymessage = "Completed Combined Non-Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Hardcover Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/hardcover-fiction.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookshardfict";
+$mymessage = "Completed Hardcover Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Hardcover NON Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/hardcover-nonfiction.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookshardnon";
+$mymessage = "Completed Hardcover Non-Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Paperback Trade Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/trade-fiction-paperback.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookpapertrade";
+$mymessage = "Completed Paperback Trade Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Paperback Mass Market Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/mass-market-paperback.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookpapermass";
+$mymessage = "Completed Paperback Mass Market Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+//   Paperback NON Fiction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+
+$myurl = "http://api.nytimes.com/svc/books/v3/lists/paperback-nonfiction.json?api-key=21455385ef6bf0db30c2d8ad5346b011%3A19%3A71280022";
+$myNYTTable = "bookpapernon";
+$mymessage = "Completed Paperback Non-Fiction\n";
+
+parseNYTimes($myurl, $myNYTTable, $mymessage);
+
+$myurl = "";
+$myNYTTable = "";
+$mymessage = "";
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+echo "FINISHED!!\n";
+
+?>

@@ -1,0 +1,22 @@
+tmdb:
+0150e412de6e434caf03b2503d125bdc
+
+Rotte:
+2pm688gdyrwxqmqwammm3y7k
+
+Amamzon Public:
+AKIAJFWZHBUTCXELD7PA
+
+Amamzon Private:
+vj6pmtJyOZ2Xi9eZ7dpMV69HXIS
+
+Associate Tag:
+ruiztv0a-20
+
+
+Group: alt.binaries.test2
+Subject: NNTP Monitor Test Message: \d+
+Poster: NNTP <NNTP@TEST>
+Field: X-Received-By
+Articles: 500
+Key: AZ03pxc7JWnLPGUV186dikS1n3jS247u

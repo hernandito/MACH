@@ -1,6 +1,10 @@
 # MACH
 ##Media Acquisition Control Hub
 
+
+![apache-le](https://raw.githubusercontent.com/hernandito/MACH/master//includes/images/logo-m.png)
+
+
 Requires and Apache or NGINX server. Just place contents inside your /www folder
 
 This uses SabNZBD, Sickrage and Couchpotato. You need to edit the file config.php to 

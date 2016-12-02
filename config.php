@@ -111,8 +111,12 @@
 // 
 	$myNZBGetURL = "http://user:pasword@192.168.0.201:6789/";
 
+//================================================================================
+//		-= NZBMegqaSearch  =-
+//================================================================================
+// If you are running an NZBMegasearch server, add the url below here.
 
-
+$myNZBMegaSearURL = "192.168.0.201:5001"		// ONLY IP or domain name and port. Do not include http://
 
 //================================================================================
 //		-= MySQL Server For RSS Feed Storage =-	

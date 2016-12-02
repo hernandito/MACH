@@ -21,7 +21,7 @@ require 'choice.txt';
 
 echo "
 
-<iframe id='ifm' width=100% height=1280 style=\"margin: 0px; border: thin none #CCC;\"  src=\"http://server.com:5001\"></iframe>
+<iframe id='ifm' width=100% height=1280 style=\"margin: 0px; border: thin none #CCC;\"  src=\"http://{$myNZBMegaSearURL}\"></iframe>
 
 
 ";

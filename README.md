@@ -30,6 +30,7 @@ To automate getting the latest HD movie releases from the various indexer sites,
 * Make the NZB scrfaper a more optional modular feature. If user rely more on torrent trackers, create a module for scraping torrent RSS feeds.
 * Create Sonarr module as an option to Sickrage
 * Create NZBGet module to use instead of SabNZBd.
+* Create a Plex module...Emby?
 * An easier way to configure user settings that do not involve config.php
 * Better setup for the following features (currently require hard coding):
 ** IP Camera Setup

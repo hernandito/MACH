@@ -21,7 +21,7 @@ require 'choice.txt';
 
 echo "
 
-<iframe id='ifm' width=100% height=820 style=\"-webkit-border-radius: 4px; border-radius: 4px; margin: 0px; margin-top:3px; border: thin none #CCC;\"  src=\"http://video2.timewarnercable.com/liveTv\"></iframe>
+<iframe id='ifm' width=100% height=820 style=\"-webkit-border-radius: 4px; border-radius: 4px; margin: 0px; margin-top:3px; border: thin none #CCC;\"  src=\"{$myLiveTVURL}\"></iframe>
 
 
 ";

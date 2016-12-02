@@ -119,6 +119,14 @@
 $myNZBMegaSearURL = "192.168.0.201:5001";		// ONLY IP or domain name and port. Do not include http://
 
 //================================================================================
+//		-= Live TV URL  =-
+//================================================================================
+// A web link to your cable providers Live TV page. Live TV in our browser!
+
+$myLiveTVURL = "http://video2.timewarnercable.com/liveTv";		// Include http://
+
+
+//================================================================================
 //		-= MySQL Server For RSS Feed Storage =-	
 //  IMPORTANT... also manually update the file parsealldeeds.php to include the
 //  MySQL Server IP number

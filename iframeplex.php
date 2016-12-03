@@ -17,7 +17,7 @@ require 'choice.txt';
 
 echo "
 
-<iframe  width=100% style=\"width:100%; margin: 0px; height: 880px; border: thin solid #CCC;\"  src=\"http://server.com:32400/web/index.html#!/server/f1732a5d41ceb75fa485399cfcd297aadaad2099/section/3\"></iframe>
+<iframe  width=100% style=\"width:100%; margin: 0px; height: 880px; border: thin solid #CCC;\"  src=\"http://{$myPlexURL}/web/index.html#!/server/f1732a5d41ceb75fa485399cfcd297aadaad2099/section/3\"></iframe>
 
 
 ";

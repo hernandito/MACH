@@ -132,7 +132,12 @@ $myLiveTVURL = "http://video2.timewarnercable.com/liveTv";		// Include http://
 
 $myKodiVM = "192.168.0.201:84";		// Do NOT include http://
 
+//================================================================================
+//		-= Plex Media Server  =-
+//================================================================================
+// To browse web interface of your Plex in a Window.
 
+$myPlexURL = "192.168.0.201:32400";		// Do NOT include http://
 //================================================================================
 //		-= MySQL Server For RSS Feed Storage =-	
 //  IMPORTANT... also manually update the file parsealldeeds.php to include the

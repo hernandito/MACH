@@ -45,10 +45,7 @@ $("#div1").load("show_notificationliving.php",$("#myLivingMessage").serialize())
 											
 											<a class='classpanel' href="#" id='rescancp' style='font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; margin: 8px; padding: 8px; color: #999999;' >Run Couchpotato Scan</a>
 											
-											<!--
-											<a href="http://192.168.0.201:5000/api/d543bf596a9f415db52d11f0a9ab7fbf/renamer.scan" target="_new" style='font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-style: normal; font-weight: bold; margin: 8px; padding: 8px; color: #ffc926;' >Run Couchpotato Scan</a>
-											<br>
-											-->
+
 	
 											<hr style="width:90%;  border: 0; height: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.3);">
 <!--											<br>	
@@ -231,16 +228,7 @@ $("#div1").load("show_notificationliving.php",$("#myLivingMessage").serialize())
 </table>		
 						<div style="font-size: 20px; color:#FFD24C; margin-left:8px; font-weight: bold;" id="div3">
 						
-							 <iframe height="580" width="720" frameBorder="0" src="http://192.168.0.201:84/plugins/dynamix.vm.manager/vnc.html?autoconnect=true&host=192.168.0.201&port=5700"></iframe> 
+							 <iframe height="580" width="720" frameBorder="0" src="http://<?php echo $myKodiVM; ?>/plugins/dynamix.vm.manager/vnc.html?autoconnect=true&host=192.168.0.201&port=5700"></iframe> 
 							
 						</div>
 
-<!--
-<div class="buttonmenu2" ><a href="#" style="border: thin solid #CCC;" >reload</a></div><br>
-
-
-<div class="snarf" >
-<a href="#" > Test Me rss</a>
-
-</div>
--->

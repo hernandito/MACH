@@ -125,6 +125,13 @@ $myNZBMegaSearURL = "192.168.0.201:5001";		// ONLY IP or domain name and port. D
 
 $myLiveTVURL = "http://video2.timewarnercable.com/liveTv";		// Include http://
 
+//================================================================================
+//		-= OpenELEC or LibreELEC unRAID Virtual Machine  =-
+//================================================================================
+// If you are using a VM for these guys, to update your machine, you can see in in a window in the Kodi tab
+
+$myKodiVM = "192.168.0.201:84";		// Do NOT include http://
+
 
 //================================================================================
 //		-= MySQL Server For RSS Feed Storage =-	

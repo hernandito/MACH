@@ -35,3 +35,6 @@ To automate getting the latest HD movie releases from the various indexer sites,
 * Create a Plex module...Emby?
 * An easier way to configure user settings that do not involve config.php
 * Better setup for the following features (currently require hard coding): IP Camera Setup; Calibre Integration; User's shortcuts.php and bookmarks.php; Weather and Time
+
+Fixing is required for the Trending Mvoies and TV Shows from Trakt
+Fixing is required for RottenTomatoes Opening and Upcoming theater releases and  blue-ray releases.
